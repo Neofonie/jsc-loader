@@ -1,0 +1,59 @@
+{
+    "containerGroups": [
+        {
+            "class": "default",
+            "outer_class": "container__outer--with-background",
+            "description": "Default container with background: Wrap x items per row.<br>Mobile: 1 per line<br>Tablet: x per line<br>Desktop: x per line",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "2-per-line",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line<br>Desktop: 2 per line",
+            "from": 1,
+            "to": 6
+        },
+        {
+            "class": "2-per-line-33-66",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line, each 50%<br>Desktop: 2 per line, first 66%, second 33%, next row the same",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "2-per-line-66-33",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line, each 50%<br>Desktop: 2 per line, first 66%, second 66%, next row the samee",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "3-per-line",
+            "description": "Mobile: 1 per line<br>Tablet: 1 per line<br>Desktop: 3 per line",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "3-per-line-first-large-on-tablet",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line<br>Desktop: 2 per line",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "wrap-1-2-3",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line<br>Desktop: 3 per line",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "wrap-1-2-4",
+            "description": "Mobile: 1 per line<br>Tablet: 2 per line<br>Desktop: 4 per line",
+            "from": 1,
+            "to": 5
+        },
+        {
+            "class": "wrap-2-2-4",
+            "description": "Mobile: 2 per line<br>Tablet: 2 per line<br>Desktop: 4 per line",
+            "from": 1,
+            "to": 8
+        }
+    ]
+}
