@@ -1,10 +1,67 @@
-{{> headline headline="JSC Loader"}}
+{{> headline headline="JSC (Java-Script-Component) Loader"}}
 
 <div class="container">
-    <div class="container__inner container__inner--wrap-2-2-4">
+    <div class="container__inner container__inner--1-per-line">
         <div>
             <div>
-                {{> headline headline="Container" without-space=true}}
+                {{> headline headline="Setup" without-space=true}}
+                You need require.js:<br />
+                &lt;script data-main=&quot;main&quot; src=&quot;{{absolute_path}}/js/vendor/requirejs/require.js&quot;&gt;&lt;/script&gt;
+
+                {{> headline headline="Start App" without-space=true}}
+                <pre>
+require([&quot;core/core-main&quot;, &quot;util/logger&quot;], function (core, Logger) {
+    // start jsc core -> will watch for .jsc classNames
+    core.startUp();
+    // looks after ajax request for new incoming jsc's
+    core.startUpAjaxJSCWatcher();
+    // add to every jsc the logger for example
+    core.beforeOnRegister(function (jsc) {
+        Logger.init(jsc);
+    });
+    // for better debugging
+    core.bindAppToWindow();
+});
+                </pre>
+
+                {{> headline headline="How to use a JSC" without-space=true}}
+                &lt;div class=&quot;jsc&quot; data-jsc-name=&quot;debug:Debug&quot;&gt;&lt;/div&gt;
+
+                {{> headline headline="A simple JSC" without-space=true}}
+                <pre>
+define([], function () {
+    const MyFirstJSC = function () {
+        // used for testing to create new instances
+        this.__klass = MyFirstJSC;
+        this.CONST = {
+            COMPONENT_NAME: &quot;MyFirstJSC&quot;,
+            DEBUG: false
+        };
+    };
+    // this.$el === the html element which have the .jsc className
+    // init method 'sync'
+    MyFirstJSC.prototype.onRegister = function () {
+        this.log(&quot;onRegister&quot;, this.$el);
+        this.log(&quot;const&quot;, this.CONST.COMPONENT_NAME);
+    };
+    // init method when it comes visible 'async'
+    MyFirstJSC.prototype.onLazyRegister = function () {
+        this.log(&quot;onLazyRegister&quot;, this.$el);
+    };
+
+    return MyFirstJSC;
+});
+                </pre>
+                {{> headline headline="Contributors" without-space=true}}
+                Mathias Kotowski<br />
+                Martin Anders<br />
+                Willy Woitas<br />
+                Matthias John<br />
+            </div>
+        </div>
+        <div>
+            <div>
+                {{> headline headline="Useful Container grid" without-space=true}}
                 <a href="containers.html">Container Examples</a><br/>
                 <a href="container_toggable.html">Container Toggable</a><br/>
                 <a href="container_slider.html">Container Slider</a><br/>
