@@ -7,7 +7,6 @@
         "fastclick": "vendor/fastclick/lib/fastclick",
         "jquery": "vendor_custom/jquery",
         "jquery-ui": "vendor_custom/jquery-ui",
-        "modernizr": "vendor_custom/modernizr",
-        "hammer": "vendor_custom/hammer"
+        "modernizr": "vendor_custom/modernizr"
     }
 }
