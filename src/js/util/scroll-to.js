@@ -3,7 +3,7 @@
  */
 define(
     ["jquery", "underscore",
-        "util/display-mode", "consts/global-const", "util/logger"],
+        "util/display-mode", "consts/global-const", "util/logger", "jquery-ui"],
     function ($, _,
               DisplayMode, GlobalConst, Logger) {
         var CONST = {
