@@ -1,0 +1,99 @@
+// Author: Martin Anders
+//
+// All texts should be styled with this mixins. The font styles are defined here:
+//
+@import "set_px_font_size_responsive";
+
+$font-size-p: 16px;
+$font-size-p-small: 15px;
+$font-size-p-mini: 12px;
+
+@mixin fontsize-hl-grey() {
+    @include set-px-font-size-responsive(rem(32), 120%, null, null, null, null, rem(24), 120%);
+    margin-bottom: rem(16);
+    color: map-get($colors, mine-shaft);
+    font-weight: $font-weight-light;
+}
+
+@mixin fontsize-hl-blk() {
+    @include fontsize-hl-grey();
+    color: $text-color-headlines;
+}
+
+@mixin fontsize-hl-gray() {
+    @include fontsize-hl-grey();
+    margin-bottom: rem(10);
+    color: map-get($colors, silver-chavlet);
+}
+
+@mixin fontsize-hl-small() {
+    @include set-px-font-size-responsive(rem(20), 120%);
+    margin-bottom: rem(8);
+    color: $text-color-headlines;
+    font-weight: $font-weight-bold;
+}
+
+@mixin fontsize-hl-medium-normal-weight() {
+    @include set-px-font-size-responsive(rem(23), 120%);
+    font-weight: $font-weight-normal;
+}
+
+@mixin fontsize-hl-small-normal-weight() {
+    @include fontsize-hl-small();
+    font-weight: $font-weight-normal;
+}
+
+@mixin fontsize-h2-blk() {
+    @include set-px-font-size-responsive(rem(24), 120%, null, null, null, null, rem(18), 120%);
+    margin-bottom: rem(16);
+    font-weight: $font-weight-light;
+    color: $text-color-headlines;
+}
+
+@mixin fontsize-p() {
+    @include set-px-font-size-responsive($font-size-p, 150%, null, null, null, null, $font-size-p-small, 150%);
+    margin-bottom: rem(8);
+    color: map-get($colors, dove-gray);
+}
+
+@mixin fontsize-p-grey() {
+    @include fontsize-p();
+    color: map-get($colors, dove-gray);
+}
+
+// less line height then regular text & black color (Produkt-Übersicht-Teaser)
+@mixin fontsize-p-narrow() {
+    @include set-px-font-size-responsive($font-size-p, 150%, null, null, null, null, $font-size-p-small, 20px);
+}
+
+// less line height then regular text & grey color (Produktbeschreibungen, Streichpreis)
+@mixin fontsize-p-narrow-grey() {
+    @include fontsize-p-narrow();
+    color: map-get($colors, dove-gray);
+}
+
+@mixin fontsize-p-small-grey() {
+    @include set-px-font-size-responsive($font-size-p-small, 150%);
+    color: map-get($colors, dove-gray);
+}
+
+@mixin fontsize-p-mini-grey() {
+    @include set-px-font-size-responsive($font-size-p-mini, 150%);
+    color: map-get($colors, dove-gray);
+}
+
+@mixin fontsize-orange-large() {
+    @include set-px-font-size-responsive(32px, 120%);
+    color: map-get($colors, pumkin);
+}
+
+// for mobile first
+@mixin fontsize-h1-big-fat() {
+    @include set-px-font-size-responsive(32px, 120%);
+    font-weight: $font-weight-bold;
+}
+
+@mixin fontsize-hl-small-light() {
+    @include set-px-font-size-responsive(20px, 120%);
+    font-weight: $font-weight-light;
+}

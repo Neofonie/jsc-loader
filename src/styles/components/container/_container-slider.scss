@@ -1,0 +1,75 @@
+$parent: containerSlider;
+
+.#{$parent} {
+    &__inner {
+        @include container();
+
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        padding-bottom: $base-margin * 2;
+
+        @include breakpoint($breakpoint-tablet) {
+            padding: $base-margin ($base-margin / 2);
+            margin: 0 auto;
+        }
+
+        div[class^="cq-placeholder"] {
+            width: 0 !important;
+        }
+
+        .containerSliderTeaser {
+            // we need this to stretch item to full height
+            width: 100%;
+            padding: 0;
+
+            @include breakpoint($breakpoint-tablet) {
+                padding: 8px;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                width: 33.3%;
+            }
+        }
+
+        &.slick-slider {
+            .slick-dots {
+                bottom: 0;
+                position: relative;
+
+                li:not(.slick-active) button {
+                    border: 0.125rem solid map-get($colors, mercury);
+                }
+
+                li:not(.slick-active):hover button {
+                    border: 0.125rem solid map-get($colors, brandred);
+                }
+            }
+        }
+
+        &.slick-initialized,
+        .edit-mode &,
+        .cq-wcm-edit & {
+            opacity: 1;
+            visibility: visible;
+
+            @include transition(
+                opacity $animation-time 0s $animation-ease,
+                visibility 0s 0s);
+        }
+
+        .edit-mode &,
+        .cq-wcm-edit & {
+            @include display-flex;
+            @include flex-wrap(wrap);
+        }
+
+        &--1-per-line {
+            @include breakpoint($breakpoint-desktop) {
+                .containerSliderTeaser {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

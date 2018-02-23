@@ -1,0 +1,89 @@
+$parent: containerToggable;
+
+.#{$parent} {
+    &__inner {
+        @include component-hidden-for-mobile-desktop(containerToggable__inner);
+    }
+
+    &__prompt {
+        @include user-select(none);
+
+        &__wrap {
+            text-align: center;
+            cursor: pointer;
+
+            a:hover {
+                color: map-get($colors, shakespeare);
+            }
+        }
+    }
+
+    &__anchor {
+        a:hover {
+            color: map-get($colors, shakespeare);
+        }
+
+        &__text {
+            display: block;
+
+            &:hover {
+                color: map-get($colors, shakespeare);
+                text-decoration: underline;
+            }
+        }
+
+        &__icon {
+            &::after {
+                @include glyph(arrow-down, $icon-small);
+                @include transition(transform $animation-time $animation-ease);
+                display: block;
+            }
+        }
+    }
+
+    &__container {
+        @include transition (
+                opacity $animation-time 0s $animation-ease,
+                max-height ($animation-time * 1.5) 0s $animation-ease,
+                visibility 0s $animation-time);
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    &--open,
+    .edit-mode &,
+    .cq-wcm-edit & {
+        .#{$parent} {
+            &__prompt {
+                display: block;
+            }
+
+            &__anchor__icon::after {
+                @include rotate(180deg);
+            }
+
+            &__container {
+                @include transition(
+                        opacity ($animation-time * 2) 0s $animation-ease,
+                        max-height $animation-time $animation-ease,
+                        visibility 0s 0s);
+                opacity: 1;
+                visibility: visible;
+                max-height: 99999px;
+            }
+        }
+    }
+
+    &--notransition {
+        .#{$parent} {
+            &__container {
+                @include transition-duration(0);
+            }
+        }
+    }
+}

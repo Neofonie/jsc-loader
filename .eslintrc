@@ -1,0 +1,59 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2015,
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "jasmine": true,
+        "jquery": true,
+        "amd": true
+    },
+    "globals": {
+        "CQ_Analytics": true,
+        "use": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "no-fallthrough": "warn",
+        "no-console": "warn",
+        "no-unused-vars": "off",
+        "indent": [
+            "warn",
+            4,
+            {
+                "ArrayExpression": 1,
+                "ObjectExpression": 1,
+                "CallExpression": {
+                    "arguments": 1
+                },
+                "FunctionExpression": {
+                    "parameters": "first"
+                },
+                "FunctionDeclaration": {
+                    "parameters": "first"
+                },
+                "VariableDeclarator": {
+                    "var": 1
+                },
+                "MemberExpression": 1,
+                "SwitchCase": 1,
+                "flatTernaryExpressions": false
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "ignoreComments": true,
+                "ignoreTrailingComments": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+            }
+        ]
+    }
+}

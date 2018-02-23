@@ -1,0 +1,33 @@
+// all possible glyph names
+$font-frutiger: "Frutiger";
+
+// https://www.cssfontstack.com/Arial
+$font-family-default: Helvetica, Arial, sans-serif;
+// Helvetica - Win: 7.34% - Mac: 100%
+// Arial - Win: 99.84% - Mac: 98.74%
+
+// font weights
+$font-weight-light: 100;
+$font-weight-normal: 200;
+$font-weight-bold: 300;
+$font-weight-extra-bold: bold;
+// font sizes
+$font-size-headline: rem(17);
+
+$headline-line-height: 120%;
+
+$headline-font-sizes: (
+    xlarge: 56px,
+    large: 32px,
+    largesmall: 24px,
+    medium: 20px,
+    normal: 16px,
+    small: 12px
+);
+$headline-font-sizes-mobile: (
+    xlarge: 48px,
+    large: 24px,
+    medium: 12px,
+    normal: 12px,
+    small: 10px
+);

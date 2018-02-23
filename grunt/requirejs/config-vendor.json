@@ -1,0 +1,4 @@
+{
+    "requirejs": "vendor/requirejs/require",
+    "jquery": "vendor/jquery/dist/jquery"
+}

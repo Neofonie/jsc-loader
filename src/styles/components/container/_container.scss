@@ -1,0 +1,381 @@
+/*
+* Author: Martin Anders
+* 12.06.2015
+*
+* This file defines all component containers. The containers define how the components float in the different viewports.
+* The following types are possible:
+*
+* container
+* container__inner--1-per-line
+* container__inner--1-per-line-small-width
+* container__inner--2-per-line
+* container__inner--3-per-line
+* container__inner--4-per-line
+* container__inner--5-per-line
+* container__inner--6-per-line
+* container__inner--wrap-1-2-3
+* container__inner--wrap-1-2-4
+* container__inner--wrap-2-2-4
+* container__inner--3-per-line-first-large-on-tablet
+* container__inner--2-per-line-66-33
+* container__inner--2-per-line-33-66
+* container__outer--with-background
+* container__outer--noflex
+*
+* More info here:
+
+* https://wiki.net/display/shoprelaunch/Strukturelemente+und+Verschachtelung
+*/
+.container__outer {
+    display: block;
+
+    &.container__outer--with-background {
+        background-color: map-get($colors, spring-wood);
+
+        > .container__inner {
+            @include breakpoint($breakpoint-tablet) {
+                padding: rem($base-margin) rem($base-margin / 2);
+            }
+        }
+    }
+
+    &.container__outer--with-background-dark {
+        background-color: map-get($colors, dove-grey);
+
+        > .container__inner {
+            @include breakpoint($breakpoint-tablet) {
+                padding: rem($base-margin) rem($base-margin / 2);
+            }
+        }
+    }
+
+    @include component-hidden-for-mobile-desktop(container__outer);
+}
+
+.container__inner {
+    @include container();
+
+    @include breakpoint($breakpoint-tablet) {
+        @include display-flex;
+        @include flex-wrap(wrap);
+        @include container-padding;
+        margin: $base-margin auto;
+    }
+
+    @include breakpoint($breakpoint-mobile-only) {
+        @include flex-direction(column);
+    }
+
+    /**
+    * Default container:
+    * Wrap x items per row.
+    * Mobile: 1 per line
+    * Tablet: x per line
+    * Desktop: x per line
+    */
+
+    > div {
+        // we need this to stretch item to full height
+        @include display-flex;
+
+        width: 100%;
+        padding: 0;
+        margin-bottom: $base-margin * 2;
+
+        @include breakpoint($breakpoint-tablet) {
+            @include flex(1);
+            padding: $base-margin / 2;
+            margin-bottom: 0;
+        }
+    }
+
+    /**
+    * Wrap 1 items per row
+    * Mobile: 1 per line
+    * Tablet: 1 per line
+    * Desktop: 1 per line
+    */
+    &--1-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex(none);
+            }
+        }
+    }
+
+    &--1-per-line-small-width {
+        max-width: $content-small-width;
+
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex(none);
+            }
+        }
+    }
+
+    /**
+    * Wrap 2 items per row on desktop and tablet
+    * Mobile: 1 per line
+    * Tablet: 2 per line
+    * Desktop: 2 per line
+    */
+    &--2-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex(none);
+                width: 50%;
+            }
+        }
+    }
+
+    /**
+    * Wrap 3 items per row on Desktop
+    * Mobile: 1 per line
+    * Tablet: 1 per line
+    * Desktop: 3 per line
+    */
+    &--3-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex-basis(100%);
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                // 33.3% has a intersection observer bug in chrome/ie
+                width: 33.333333%;
+            }
+        }
+    }
+
+    /**
+    * Wrap 4 items per row on Desktop
+    * Mobile: 1 per line
+    * Tablet: 1 per line
+    * Desktop: 4 per line
+    */
+    &--4-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex-basis(100%);
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 25%;
+            }
+        }
+    }
+
+    /**
+    * Wrap 5 items per row on Desktop
+    * Mobile: 1 per line
+    * Tablet: 1 per line
+    * Desktop: 5 per line
+    */
+    &--5-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex-basis(100%);
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 20%;
+            }
+        }
+    }
+
+    /**
+    * Wrap 6 items per row on Desktop
+    * Mobile: 1 per line
+    * Tablet: 1 per line
+    * Desktop: 6 per line
+    */
+    &--6-per-line {
+        > div {
+            @include breakpoint($breakpoint-tablet) {
+                @include flex-basis(100%);
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 16.6%;
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 1 per line
+    * Tablet: 2 per line
+    * Desktop: 3 per line
+    */
+    &--wrap-1-2-3 {
+        > div {
+            @include breakpoint($breakpoint-tablet-only) {
+                //@include flex-basis(50%);
+                @include flex(none);
+                width: 50%;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 33.3%;
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 1 per line
+    * Tablet: 2 per line
+    * Desktop: 4 per line
+    */
+    &--wrap-1-2-4 {
+        > div {
+            @include breakpoint($breakpoint-tablet-only) {
+                @include flex(none);
+                width: 50%;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 25%;
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 2 per line
+    * Tablet: 2 per line
+    * Desktop: 4 per line
+    */
+    &--wrap-2-2-4 {
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        @include container-padding;
+        margin: auto;
+
+        > div {
+            @include breakpoint($breakpoint-mobile) {
+                @include flex(none);
+                width: 50%;
+                padding: $base-margin / 2;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 25%;
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 1 per line
+    * Tablet: 1. item 100%, 2. and 3. item 50%, 4. item 100%, 5. and 6. item 50% and ...
+    * Desktop: 3 per line
+    */
+    &--3-per-line-first-large-on-tablet,
+    &--wrap-first-on-tablet {
+        > div {
+            // from tablet minimum width is 33.3%
+            @include breakpoint($breakpoint-tablet) {
+                //@include flex-basis(50%);
+                @include flex(none);
+                width: 50%;
+            }
+            // only on tablet the first child has full width
+            @include breakpoint($breakpoint-tablet-only) {
+                &:first-child {
+                    @include flex(none);
+                    width: 100%;
+                }
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 33.3%;
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 1 per line
+    * Tablet: 2 per line, each 50%
+    * Desktop: 2 per line, first 66%, second 33%, next row the same
+    */
+    &--2-per-line-66-33 {
+        > div {
+            @include breakpoint($breakpoint-tablet-only) {
+                //@include flex-basis(50%);
+                @include flex(none);
+                width: 50%;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                &:first-child,
+                &:nth-child(3),
+                &:nth-child(5) {
+                    @include flex(none);
+                    width: 66.6%;
+                }
+            }
+        }
+    }
+
+    /**
+    * Wrap the items like this:
+    * Mobile: 1 per line
+    * Tablet: 2 per line, each 50%
+    * Desktop: 2 per line, first 33%, second 66%, next row the same
+    */
+    &--2-per-line-33-66 {
+        > div {
+            @include breakpoint($breakpoint-tablet-only) {
+                //@include flex-basis(50%);
+                @include flex(none);
+                width: 50%;
+            }
+
+            @include breakpoint($breakpoint-desktop) {
+                @include flex(none);
+                width: 33.3%;
+
+                &:nth-child(2),
+                &:nth-child(4),
+                &:nth-child(6) {
+                    width: 66.6%;
+                }
+            }
+        }
+    }
+
+    &--no-margin {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &--noflex {
+        > div {
+            @include flex(none);
+            display: block;
+        }
+    }
+
+    &--justify-center {
+        @include justify-content(center);
+    }
+
+    &--left-align {
+        text-align: left;
+    }
+
+    &--center {
+        margin: 0 auto !important;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="headline-component headline-component--left">
+    <h1>container__inner--{{class}}</h1>
+
+    <p>
+        {{{description}}}
+    </p>
+</div>
+
+
+{{#for from to 1 }}
+    <div class="headline-component headline-component--left">
+        <h2>{{index}} item</h2>
+    </div>
+
+    <div class="container section">
+        <div class="container__outer {{../outer_class}}">
+            <div class="container__inner container__inner--{{../class}}">
+                {{#times index }}
+                    {{> dummy_item}}
+                {{/times}}
+            </div>
+        </div>
+    </div>
+{{/for}}

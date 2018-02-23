@@ -1,0 +1,38 @@
+@import "set_px_font_size_single";
+
+// set font-size and line-height for all breakpoints
+// 1. all
+// 2. viewport desktop
+// 3. viewport tablet
+// 4. viewport mobile
+//
+// Example:
+// Set font size to 16px and line height to 25px. Only for mobile set font size to 15px and line height to 20px
+// @include set-px-font-size-responsive(16px, 25px, null, null, null, null, 15px, 20px);
+@mixin set-px-font-size-responsive(
+    $default-size, $default-line: null,
+    $l-size: null, $l-line: null,
+    $m-size: null, $m-line: null,
+    $s-size: null, $s-line: null) {
+    // 4
+
+    @include set-px-font-size-single($default-size, $default-line);
+
+    @if $l-size or $l-line {
+        @include breakpoint($breakpoint-desktop) {
+            @include set-px-font-size-single($l-size, $l-line);
+        }
+    }
+
+    @if $m-size or $m-line {
+        @include breakpoint($breakpoint-tablet-only) {
+            @include set-px-font-size-single($m-size, $m-line);
+        }
+    }
+
+    @if $s-size or $s-line {
+        @include breakpoint($breakpoint-mobile-only) {
+            @include set-px-font-size-single($s-size, $s-line);
+        }
+    }
+}

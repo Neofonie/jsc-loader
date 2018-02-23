@@ -1,0 +1,24 @@
+{{#if headline}}
+<div class="{{#multiLine this}}
+    headline-component
+    headline-component--{{#if align}}{{align}}{{else}}left{{/if}}
+    {{#if modifier}}headline-component--{{modifier}}{{/if}}
+    {{#if without-space}}headline-component--without-space{{/if}}
+    {{#if with-underline}}headline-component--with-underline{{/if}}
+    {{/multiLine}}">
+    {{#xif "typeof this.headline === 'string'"}}
+        <{{#if headline_tag}}{{headline_tag}}{{else}}h1{{/if}} class="headline-component__headline">
+            {{{headline}}}
+        </{{#if headline_tag}}{{headline_tag}}{{else}}h1{{/if}}>
+    {{/xif}}
+    {{#if subline}}
+    <h2 class="headline-component__subline">{{subline}}</h2>
+    {{/if}}
+    {{#if helpline}}
+    <h2 class="headline-component__helpline"><i class="glyph glyph--info-invert"></i> {{{helpline}}}</h2>
+    {{/if}}
+    {{#if link}}
+        <a href="{{link}}" target="_blank">{{link}}</a>
+    {{/if}}
+</div>
+{{/if}}

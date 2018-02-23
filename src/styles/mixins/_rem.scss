@@ -1,0 +1,30 @@
+//
+// SASS-BASE - a starter kit for any SASS project
+//
+// Author: Martin Anders anders79@web.de
+
+/* Set up a variable for maths */
+$doc-font-size: 16 !default;
+
+/* the font-size mixin */
+@mixin font-size($size) {
+    font-size: (0 + strip-unit($size))px;
+    font-size: (0 + strip-unit($size) / $doc-font-size)rem;
+}
+
+@function rem($size) {
+    $rem-size: strip-unit($size) / $doc-font-size;
+    @return #{$rem-size}rem;
+}
+
+@function -rem($size) {
+    @return -(rem($size));
+}
+
+// Set relative viewport with "vw" in pixels based on the mobile viewport.
+// That means vw(16) is equal to 16 px when the viewport width is 340.
+// This helps to use readable values instead of something like 1.4254vw
+@function vw($size) {
+    $vw-size: $size / 340 * 100;
+    @return #{$vw-size}vw;
+}

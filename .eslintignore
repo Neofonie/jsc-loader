@@ -1,0 +1,5 @@
+src/js/main.js
+src/js/require
+src/js/vendor*
+src/js/**/*spec.js
+src/js/bundles/

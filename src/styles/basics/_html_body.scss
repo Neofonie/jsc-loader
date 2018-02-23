@@ -1,0 +1,42 @@
+/*
+	Document   : _html_body.scss
+	Created on : 03.12.2014
+	Author     : anders
+	Description:
+
+	Here are all style for HTML und BODY Element
+
+	We use the REM system. That means everything is relative the the fontsize of the HTML element.
+
+	more info: http://www.elmastudio.de/programmierung/css/css-tipp-rem-als-einheit-fur-schriftgrose-nutzen/
+*/
+//-- body definitions
+html,
+body {
+    font-family: $font-family-default;
+    font-weight: 200;
+
+    font-size: 16px;
+    line-height: 1.25; // 20px relative to 16
+
+    color: map-get($colors, dove-grey);
+    background-color: map-get($colors, white);
+}
+
+body {
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    @include set-px-font-size-responsive(16px, 25px, null, null, null, null, 15px, 20px);
+
+    @include breakpoint($breakpoint-desktop) {
+        padding: 0;
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    body {
+        -webkit-text-size-adjust: none;
+    }
+}

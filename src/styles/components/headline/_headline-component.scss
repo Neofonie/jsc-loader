@@ -1,0 +1,145 @@
+/**
+    Author: Martin Anders
+    17.06.2015
+
+    This component is a "headline" component.
+
+    Editable parameters:
+        - headline: the text of the headline
+        - align: text align. center, left or right
+        - type: the tag of the headline, can be h1, h2 or h3
+
+    For more information about the different layouts look here:
+    client\app\src\styles\components\headline\_headline-component.scss
+*/
+$parent: headline-component;
+
+.#{$parent} {
+    @include container();
+
+    text-align: center;
+    padding: 0 $base-margin;
+    margin-top: rem(28);
+    position: relative;
+
+    // include all h tags
+    @include fontsize-hl-grey();
+    margin-bottom: rem(6);
+
+    @include component-hidden-for-mobile-desktop($parent);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-bottom: 0;
+    }
+
+    &__anchor {
+        position: absolute;
+        top: rem(-16);
+    }
+
+    &__headline {
+        position: relative;
+        color: map-get($colors, dove-grey);
+    }
+
+    &__subline {
+        position: relative;
+        color: map-get($colors, dove-grey);
+    }
+
+    &__helpline {
+        position: relative;
+        font-size: 14px;
+        line-height: 14px;
+        display: block;
+        color: map-get($colors, brandred);
+    }
+
+    &--left {
+        text-align: left;
+    }
+
+    &--right {
+        text-align: right;
+    }
+
+    &--without-space {
+        padding: 0;
+    }
+
+    &--remove-space {
+        margin-left: -(rem($base-margin)) !important;
+        margin-right: -(rem($base-margin)) !important;
+    }
+
+    &--with-underline {
+        .#{$parent} {
+            &__headline,
+            &__subline {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &--xlarge {
+        font-size: rem(56);
+        @include set-px-font-size-responsive(
+                map-get($headline-font-sizes, xlarge), $headline-line-height,
+                null, null, null, null,
+                map-get($headline-font-sizes-mobile, xlarge), $headline-line-height);
+        font-weight: $font-weight-light;
+    }
+
+    &--large {
+        @include set-px-font-size-responsive(
+                map-get($headline-font-sizes, large), $headline-line-height,
+                null, null, null, null,
+                map-get($headline-font-sizes-mobile, large), $headline-line-height);
+        font-weight: $font-weight-light;
+    }
+
+    &--medium {
+        @include set-px-font-size-responsive(
+                map-get($headline-font-sizes, medium), $headline-line-height,
+                null, null, null, null,
+                map-get($headline-font-sizes-mobile, medium), $headline-line-height);
+        font-weight: bold;
+    }
+
+    &--base {
+        @include set-px-font-size-responsive(
+                map-get($headline-font-sizes, base), $headline-line-height,
+                null, null, null, null,
+                map-get($headline-font-sizes-mobile, base), $headline-line-height);
+        font-weight: $font-weight-normal;
+    }
+
+    &--small {
+        @include set-px-font-size-responsive(
+                map-get($headline-font-sizes, small), $headline-line-height,
+                null, null, null, null,
+                map-get($headline-font-sizes-mobile, small), $headline-line-height);
+        font-weight: normal;
+    }
+
+    &--very-long {
+        @include breakpoint($breakpoint-desktop) {
+            .#{$parent}__headline,
+            .#{$parent}__subline {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.#{$parent} .too-much,
+.too-much,
+.too-much * {
+    color: map-get($colors, brandred) !important;
+    animation: blinker 1s linear infinite;
+}

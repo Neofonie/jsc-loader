@@ -1,0 +1,7 @@
+@mixin button-withoutborder() {
+    padding: rem(14) rem(28);
+}
+
+@mixin button-withborder() {
+    padding: rem(13) rem(27);
+}

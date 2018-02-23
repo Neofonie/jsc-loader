@@ -1,0 +1,50 @@
+/**
+ * (c) Neofonie GmbH
+ *
+ * Author: Martin Anders
+ *
+ * The class provides information about the viewport modes defined in css.
+ * We save data in the body pseudo elements to transfer data from CSS to JS, because it's better to have the values for
+ * the display modes only in one place.
+ *
+ * The body::before element contains the name of the current display mode. Currently we use "desktop", "tablet" or "mobile".
+ * The body::after element contains the boundings (min and mayx width) of the different display modes.
+ *
+ * In JS the class "display_mode.js" reads the body pseudo elements.
+ *
+ */
+// content property contains the name of the display mode
+body::before {
+    left: -1000px;
+    height: 0;
+    position: absolute;
+    overflow: hidden;
+    content: "mobile";
+    @include breakpoint($breakpoint-landscape) {
+        content: "mobile-landscape";
+    }
+
+    @include breakpoint($breakpoint-tablet) {
+        content: "tablet";
+        @include breakpoint($breakpoint-landscape) {
+            content: "tablet-landscape";
+        }
+    }
+
+    @include breakpoint($breakpoint-desktop) {
+        content: "desktop";
+    }
+}
+
+// content property contains the boundings (minWidth and maxWidth) for each display mode
+body::after {
+    left: -1000px;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    content: "{" +
+                '"mobile":{"maxWidth":"' + strip-unit($breakpoint-mobile) + '"},' +
+                '"tablet":{"minWidth":"' + strip-unit($breakpoint-tablet) + '","maxWidth":"' + (strip-unit($breakpoint-desktop) - 1) + '"},' +
+                '"desktop":{"minWidth":"' + strip-unit($breakpoint-desktop) + '"}' +
+             "}";
+}

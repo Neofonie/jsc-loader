@@ -1,0 +1,194 @@
+/*
+	Document   : _mixins
+	Created on : 21.04.2015, 15:45:37
+	Author     : Mrtin Anders
+	Description:
+	Purpose of the stylesheet follows.
+
+	Global mixins definitions.
+
+	Only globaly used mixins should be inserted here. Specialized mixins should be defined in the view files.
+
+    This mixin should be used for all borders, to ensure that there are the same properties used for all borders.
+
+    Example:
+	@include simple-border();  					// border: 1px solid #d0d0d0
+	@include simple-border("top");   			// border-top: 1px solid #d0d0d0
+	@include simple-border("top", 2px, #f00);   	// border-top: 2px solid #f00
+*/
+@mixin simple-border($sides, $size: 1px, $color: $border-color-light) {
+    @if ($sides == "") {
+        border: #{$size} solid #{$color};
+    } @else {
+        @each $side in $sides {
+            @if ($side == "top" or $side == "right" or $side == "bottom" or $side == "left") {
+                border-#{$side}: #{$size} solid #{$color};
+            }
+        }
+    }
+}
+
+/**
+* this is used for input field placeholder styling
+* usage:
+@include placeholder {
+    font-style:italic;
+    color: white;
+    font-weight:100;
+}
+*/
+@mixin placeholder {
+    &::placeholder {
+        @content;
+    }
+
+    /* WebKit, Blink, Edge */
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    /* Mozilla Firefox 4 to 18 */
+    &:-moz-placeholder {
+        @content;
+        opacity: 1;
+    }
+
+    /* Mozilla Firefox 19+ */
+    &::-moz-placeholder {
+        @content;
+        opacity: 1;
+    }
+
+    /* Internet Explorer 10-11 */
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    /* Standard one last! */
+    &:placeholder-shown {
+        @content;
+    }
+}
+
+/**
+* Used to force GPU acceleration.
+*/
+@mixin hardware-acceleration() {
+    @include translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+}
+
+@mixin fade-in-with-show() {
+    opacity: 0;
+    @include transition(opacity 0.4s 0 ease-out);
+
+    &.show {
+        opacity: 1;
+    }
+
+}
+
+@mixin disable-tap-highlight() {
+    -webkit-tap-highlight-color: rgba(map-get($colors, black), 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+// Use display: inline-block; as a float-alternative
+@mixin ib-parent {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    word-spacing: -1em;
+}
+
+@mixin ib-child {
+    display: inline-block;
+    vertical-align: top;
+    word-spacing: 0;
+}
+
+// Hide text on elements in sake of accessibility
+@mixin hide-text {
+    overflow: hidden;
+    font: (0 / 0) serif;
+    text-shadow: none;
+    color: transparent;
+}
+
+@mixin reset-hide-text {
+    overflow: inherit;
+    font: inherit;
+    text-shadow: inherit;
+    color: inherit;
+}
+
+@mixin retina-bg-image($bg-image) {
+    $retina-media: only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2 / 1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx);
+
+    $retina: (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3 / 2), (min--moz-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 144dppx);
+
+    @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3 / 2), (min--moz-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 144dppx) {
+        @include bg-image($bg-image);
+    }
+}
+
+@mixin component-hidden-for-mobile-desktop($component) {
+    &.#{$component}--mobile-hidden {
+        @include breakpoint($breakpoint-mobile-only) {
+            display: none;
+        }
+    }
+
+    &.#{$component}--desktop-hidden {
+        @include breakpoint($breakpoint-tablet) {
+            display: none;
+        }
+    }
+}
+
+@mixin hide-for-author() {
+    /////////////////////////////
+    // accordion for show items in author
+    &__viewer {
+        cursor: pointer;
+        color: map-get($colors, brandred) !important;
+        font-weight: $font-weight-normal !important;
+        @include link-with-arrow-toggle();
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &__spacer {
+            margin-bottom: $base-margin;
+        }
+    }
+
+    .hide-for-author {
+        display: none;
+    }
+
+    [type="radio"] {
+        display: none;
+    }
+
+    [type="radio"]:checked ~ label {
+        text-decoration: underline;
+
+        &::after {
+            @include rotate(180deg);
+        }
+    }
+
+    [type="radio"]:checked ~ label ~ .hide-for-author,
+    &:focus ~ label ~ .hide-for-author {
+        display: block;
+    }
+    /////////////////////////////
+}

@@ -1,0 +1,50 @@
+@mixin container {
+    width: 100%;
+    max-width: $desktop-width;
+    margin: auto;
+
+    @include box-sizing(border-box);
+}
+
+@mixin container-padding {
+    padding: 0 ($base-margin / 2);
+}
+
+@mixin container-inner {
+    margin: 0;
+    // side padding only in desktop mode
+    padding: 0 ($base-margin / 2);
+
+    @include clearfix;
+}
+
+@mixin cell($columns: 12, $grid-size: 12) {
+    // side padding only in desktop mode
+    padding: 0 ($base-margin / 2);
+    float: left;
+    width: percentage($columns / $grid-size);
+}
+
+// here comes the display flex version of the grid mixins.
+
+@mixin flex-container($side-gutter: 0) {
+    width: 100%;
+    max-width: $desktop-width;
+    margin: auto;
+
+    @if $side-gutter != 0 {
+        padding: 0 $side-gutter;
+    }
+
+    @include display-flex;
+    @include box-sizing(border-box);
+}
+
+@mixin flex-cell($columns: 12, $grid-size: 12) {
+    // side padding only in desktop mode
+    padding: 0 ($base-margin / 2);
+
+    @include breakpoint($breakpoint-tablet) {
+        @include flex(1);
+    }
+}

@@ -1,0 +1,42 @@
+$parent: tothetop-linker;
+
+.#{$parent} {
+    display: inline-block;
+    position: fixed;
+    bottom: -rem($base-margin * 20);
+    right: rem($base-margin);
+    z-index: index($z-index-order, tothetop);
+    padding: 0.4rem 0.75rem;
+    font-weight: $font-weight-bold;
+    font-size: rem($base-margin);
+    border-radius: $border-radius;
+    color: map-get($colors, white);
+    cursor: pointer;
+    background-color: map-get($colors, dove-gray);
+
+    @include transition(bottom $animation-time $animation-ease);
+    @include breakpoint($breakpoint-new-desktop-normal) {
+        font-weight: normal;
+    }
+
+    &.is-visible {
+        bottom: rem($base-margin * 2);
+    }
+
+    &__text {
+        display: none;
+        margin-left: 5px;
+
+        @include breakpoint($breakpoint-new-desktop-normal) {
+            display: inline-block !important;
+        }
+    }
+
+    &::before {
+        color: map-get($colors, white);
+        display: inline-block;
+        vertical-align: bottom;
+        content: "▲";
+        line-height: 25px;
+    }
+}

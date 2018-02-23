@@ -1,0 +1,21 @@
+/**
+    Author: Martin Anders
+
+    This component is a dummy placeholder component for testing the "container" component.
+    It should used only for testing purposes.
+
+    Non AEM example: http://localhost:9000/containers.html
+**/
+$dummy-bg-color: #B6DEFF;
+
+.dummy-item {
+    min-height: 100px;
+    width: 100%;
+
+    &__content {
+        padding: 8px;
+        background-color: $dummy-bg-color;
+        width: 100%;
+        min-height: 100px;
+    }
+}

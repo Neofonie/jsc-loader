@@ -1,0 +1,25 @@
+@import "variables";
+/*
+ https://transfonter.org/formats:
+    @font-face {
+        font-family: 'FontName';
+        src: url('webfont.eot'); // IE9+ Compat Modes
+        src: url('webfont.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+            url('webfont.woff2') format('woff2'), // Super modern browsers
+            url('webfont.woff') format('woff'), // Modern browsers
+            url('webfont.ttf') format('truetype'), // Safari, Android, iOS
+            url('webfont.svg#FontName') format('svg'); // Legacy iOS
+    }
+
+    https://wiki.selfhtml.org/wiki/CSS/Eigenschaften/Schriftformatierung/@font-face
+            otf & ttf	svg	        woff	    woff2	    eot
+    IE Edge	(/) (9+)    (x)	        (/) (9+)	(/) (14+)	(/) (5.5+)
+    Firefox	(/) (3.5+)	(x)	        (/) (3.6+)	(/) (39+)	(x)
+    Chrome	(/) (4+)	(x) (38+)	(/) (4+)	(/) (38+)	(x)
+    Opera	(/) (10+)	(x) (25+)	(/) (15+)	(/) (24+)	(x)
+    Safari	(/) (3.1+)	(/) (3.1+)	(/) (5.1+)	(/) (10+)	(x)
+    iOS     (/)	        (/)	        (/) (5.1+)	(/) (10+)	(x)
+    Android	(/) (2.2+)	(/) (3+)	(/) (4.4+)	(/) (56+)	(x)
+ */
+//@import "font-faces_critical"; // critical
+@import "font-faces";

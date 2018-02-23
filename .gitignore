@@ -1,0 +1,13 @@
+/.idea/
+/dist/
+/generated/
+/tmp/
+/node_modules/
+.grunt/
+src/js/vendor/
+*.iml
+.DSStore
+npm-debug.log
+main.config.js
+main.js
+require.config.js

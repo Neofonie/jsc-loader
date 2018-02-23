@@ -1,0 +1,316 @@
+// first reset all button styles
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    @include box-sizing(content-box);
+}
+
+/* Reset `button` and button-style `input` default styles */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    box-sizing: border-box;
+}
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+$parent: button;
+
+.#{$parent} {
+    cursor: pointer;
+    display: inline-block;
+    @include border-radius($border-radius);
+    background-color: map-get($colors, brandred);
+    border: 1px solid map-get($colors, brandred);
+    color: map-get($colors, white);
+    font-weight: $font-weight-bold;
+
+    @include box-sizing(border-box);
+
+    @include button-withoutborder;
+    line-height: rem(22);
+
+    font-size: rem($font-size-p-small);
+
+    @include transition(background-color $animation-time $animation-ease);
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &:hover {
+        color: map-get($colors, white);
+        background-color: map-get($colors, venetian-red);
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: map-get($colors, venetian-red);
+    }
+
+    @include breakpoint($breakpoint-tablet) {
+        font-size: rem($font-size-p);
+    }
+
+    &__label {
+        text-align: left;
+        display: table-cell;
+        vertical-align: middle;
+
+        &--small {
+            display: block;
+            font-size: rem(14);
+            margin-top: rem($base-margin / 4);
+            font-weight: $font-weight-normal;
+            line-height: rem(14);
+        }
+    }
+
+    &--inverted {
+        background-color: transparent;
+        border: 1px solid map-get($colors, brandred);
+        color: map-get($colors, brandred);
+        @include button-withborder;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: transparent;
+            border-color: map-get($colors, venetian-red);
+            color: map-get($colors, venetian-red);
+        }
+
+        &.#{$parent} {
+            &--disabled {
+                background-color: transparent;
+                color: map-get($colors, silver-chalice);
+                border-color: map-get($colors, silver-chalice);
+
+                &:focus,
+                &:hover,
+                &:active {
+                    background-color: transparent;
+                    color: map-get($colors, silver-chalice);
+                    border-color: map-get($colors, silver-chalice);
+                }
+            }
+        }
+    }
+
+    &--inverted-dark {
+        background-color: transparent;
+        border: 1px solid map-get($colors, silver-chalice);
+        color: map-get($colors, dove-gray);
+        @include button-withborder;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: transparent;
+            border-color: map-get($colors, mine-shaft);
+            color: map-get($colors, mine-shaft);
+        }
+    }
+
+    &--white {
+        pointer-events: all;
+        border: 1px solid map-get($colors, white);
+        background-color: map-get($colors, white);
+        color: map-get($colors, black);
+        @include button-withborder;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, white);
+            color: map-get($colors, black);
+        }
+    }
+
+    &--disabled {
+        background-color: map-get($colors, silver-chalice);
+        color: map-get($colors, white);
+        border-color: map-get($colors, silver-chalice);
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, silver-chalice);
+            color: map-get($colors, white);
+            border-color: map-get($colors, silver-chalice);
+        }
+    }
+
+    &--full-width {
+        width: 100%;
+        text-align: center;
+    }
+
+    &--center {
+        margin: auto;
+        display: block;
+    }
+
+    &--right {
+        margin: auto 0 auto auto;
+        display: block;
+    }
+
+    &--grey {
+        background-color: map-get($colors, mercury);
+        border: 1px solid map-get($colors, mercury);
+        color: map-get($colors, black);
+        @include button-withborder;
+
+        &:disabled {
+            background-color: map-get($colors, mercury);
+            color: map-get($colors, dove-grey);
+
+            &:focus,
+            &:hover,
+            &:active {
+                background-color: map-get($colors, mercury);
+                color: map-get($colors, dove-grey);
+                border-color: map-get($colors, mercury);
+                cursor: default;
+            }
+        }
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: transparent;
+            border-color: map-get($colors, pumkin);
+            color: map-get($colors, pumkin);
+        }
+    }
+
+    &--dark-grey {
+        background-color: map-get($colors, dove-gray);
+        border: 1px solid map-get($colors, dove-gray);
+        color: map-get($colors, white);
+        pointer-events: all;
+        @include button-withborder;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, mine-shaft);
+        }
+    }
+
+    &--ifolor-red {
+        background-color: map-get($colors, brandred);
+        border: 1px solid map-get($colors, brandred);
+        color: map-get($colors, white);
+        pointer-events: all;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, venetian-red);
+        }
+
+        &.#{$parent} {
+            &--disabled {
+                background-color: map-get($colors, silver-chalice);
+                color: map-get($colors, white);
+                border-color: map-get($colors, silver-chalice);
+            }
+        }
+    }
+
+    &--ifolor-red-inverted,
+    &--ifolor-red-white-inverted {
+        background-color: transparent;
+        border: 1px solid map-get($colors, brandred);
+        color: map-get($colors, brandred);
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: transparent;
+            border-color: map-get($colors, venetian-red);
+            color: map-get($colors, venetian-red);
+        }
+
+        &.#{$parent} {
+            &--disabled {
+                background-color: transparent;
+                color: map-get($colors, silver-chalice);
+                border-color: map-get($colors, silver-chalice);
+            }
+        }
+    }
+
+    &--ifolor-red-white-inverted {
+        background-color: map-get($colors, white);
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, white);
+        }
+    }
+
+    &--small {
+        padding: rem($base-margin / 2) rem(20);
+    }
+
+    &--big {
+        line-height: 35px;
+    }
+
+    &--one-line {
+        white-space: nowrap;
+    }
+
+    &--centered {
+        text-align: center;
+    }
+
+    &--chip {
+        text-align: center;
+        padding: 0 rem($base-margin / 1.5);
+        margin: rem(4) 0;
+        font-size: rem(12);
+        @include border-radius($base-margin * 2);
+        border: 0;
+        background-color: map-get($colors, product-teaser-dark-gray);
+        color: map-get($colors, black);
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: map-get($colors, product-teaser-dark-gray);
+            color: map-get($colors, black);
+        }
+    }
+
+    &--lower-letter-spacing {
+        letter-spacing: -0.7px;
+    }
+}

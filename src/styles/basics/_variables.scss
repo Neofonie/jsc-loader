@@ -1,0 +1,73 @@
+// color definitions
+$colors: (
+    black: #000,
+    black-transparent: rgba(0, 0, 0, 0.4),
+    mine-shaft: #333,
+    dove-gray: #646464,
+    dove-gray-semitransparent: rgba(100, 100, 100, 0.7),
+    pickled-bluewood: #2F484F,
+
+    mercury: #E9E9E9,
+    mercury-light: #EFEFEF,
+    mercury-lighter: #F7F7F7,
+    white: #FFF,
+    white-romance: #F8F5EC,
+    yellow: #FFA51E,
+    pumkin: #FF7419,
+
+    debug-green: #0C0,
+    debug-red: #C00,
+
+    // http://chir.ag/projects/name-that-color
+    tondura: #4A4A4A
+);
+
+$colors: map-merge($colors, (
+    fire-engine-red: map-get($colors, brandred),
+    light-grey: map-get($colors, silver)
+));
+
+// layout
+$base-margin: 16px;
+$border-radius: 5px;
+
+// the width of the content area without paddings etc.
+$mobile-width: 320px;
+$tablet-width: 737px;
+$content-small-width: 700px;
+
+$desktop-content-width: 956px;
+$desktop-width: 1024px;
+// desktop content width inclusive padding left and right.
+$desktop-inner-width: $desktop-width;
+
+$max-desktop-width: 1280px;
+$max-new-desktop-width: 1440px;
+
+// breakpoint definitions
+$breakpoint-landscape: (orientation landscape);
+$breakpoint-portrait: (orientation portrait);
+$breakpoint-mobile: $mobile-width;
+$breakpoint-mobile-only: max-width $tablet-width - 1;
+$breakpoint-tablet: $tablet-width;
+$breakpoint-tablet-only: (min-width ($tablet-width)) (max-width $desktop-width - 1);
+$breakpoint-mobile-and-tablet-only: max-width $desktop-width - 1;
+$breakpoint-desktop: $desktop-width;
+
+$breakpoint-big-laptops-only: (min-width ($max-desktop-width)) (max-width 1440px);
+$breakpoint-small-laptops-only: (min-width ($desktop-width)) (max-width $max-desktop-width - 1);
+
+// animation
+$animation-time: 0.25s;
+$animation-time-long: 0.5s;
+$animation-ease: ease-in-out;
+
+// some width definitions
+$max-width-free-text: 632px;
+
+////////////////////////////////////
+
+$breakpoint-new-tablet: 321px;
+$breakpoint-new-desktop-small: 988px;
+$breakpoint-new-desktop-normal: 1280px;
+$breakpoint-new-desktop-large: 1440px;
